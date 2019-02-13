@@ -44,7 +44,7 @@ export default class App extends Component {
             ? filtredCountries.map(function(el) {
                 return <ListItem key={el}>{el}</ListItem>;
               })
-            : filtredCountries.reverse().map(function(el) {
+            : [...filtredCountries].reverse().map(function(el) {
                 return <ListItem key={el}>{el}</ListItem>;
               })}
         </List>
