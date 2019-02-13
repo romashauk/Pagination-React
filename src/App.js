@@ -15,7 +15,7 @@ export default class App extends Component {
     });
   };
   render() {
-    const { query } = this.state;
+    const { query, order } = this.state;
     const filtredCountries = Countries.filter(c =>
       c.toLowerCase().includes(query.toLowerCase())
     );
@@ -40,7 +40,7 @@ export default class App extends Component {
         <button onClick={this.handleSort}>Sort</button>
 
         <List>
-          {this.state.order
+          {order
             ? filtredCountries.map(function(el) {
                 return <ListItem key={el}>{el}</ListItem>;
               })
