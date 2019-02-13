@@ -1,28 +1,54 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-class App extends Component {
+import React, { Component, Fragment } from 'react';
+import ListItem from 'material-ui/List/ListItem';
+import List from 'material-ui/List';
+import Countries from './countries.json';
+import AppBar from 'material-ui/AppBar';
+import TextDefault from 'material-ui/TextField';
+export default class App extends Component {
+  state = {
+    query: '',
+    order: true,
+  };
+  handleSort = () => {
+    this.setState({
+      order: !this.state.order,
+    });
+  };
   render() {
+    const { query } = this.state;
+    const filtredCountries = Countries.filter(c =>
+      c.toLowerCase().includes(query.toLowerCase())
+    );
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+      <Fragment>
+        <AppBar title={'Countries List'} showMenuIconButton={false} />
+        <TextDefault
+          onChange={e =>
+            this.setState({
+              query: e.target.value,
+            })
+          }
+          hintText="Search Country"
+          floatingLabelText="Country"
+        />
+        {query && (
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+            Found {filtredCountries.length} / {Countries.length}
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+        )}
+        <br />
+        <button onClick={this.handleSort}>Sort</button>
+
+        <List>
+          {this.state.order
+            ? filtredCountries.map(function(el) {
+                return <ListItem key={el}>{el}</ListItem>;
+              })
+            : filtredCountries.reverse().map(function(el) {
+                return <ListItem key={el}>{el}</ListItem>;
+              })}
+        </List>
+      </Fragment>
     );
   }
 }
-
-export default App;
