@@ -1,5 +1,5 @@
 {
-  "name": "react2",
+  "name": "2323",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://romashauk.github.io/sortList",
@@ -34,5 +34,16 @@
   ],
   "devDependencies": {
     "gh-pages": "^2.0.1"
-  }
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romashauk/sortList.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/romashauk/sortList/issues"
+  },
+  "description": ""
 }
