@@ -2,7 +2,7 @@
   "name": "2323",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://romashauk.github.io/sortList",
+  "homepage": "https://romashauk.github.io/Pagination-React",
   "dependencies": {
     "classnames": "^2.2.6",
     "material-ui": "^0.20.2",
