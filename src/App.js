@@ -16,16 +16,6 @@ export default class App extends Component {
       currentPage: pageNumber,
     });
   };
-  handleNext = () => {
-    this.setState({
-      currentPage: this.state.currentPage + 1,
-    });
-  };
-  handlePrev = () => {
-    this.setState({
-      currentPage: this.state.currentPage - 1,
-    });
-  };
   render() {
     const { currentPage, itemsPerPage } = this.state;
     const itemStart = (currentPage - 1) * itemsPerPage;
@@ -47,9 +37,6 @@ export default class App extends Component {
           total={Countries.length}
           onChange={this.handlePageChange}
           currentPage={currentPage}
-          Countries={Countries}
-          handlePageNext={this.handleNext}
-          handlePagePrev={this.handlePrev}
         />
       </Fragment>
     );
