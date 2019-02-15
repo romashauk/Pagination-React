@@ -10,71 +10,27 @@ export default class App extends Component {
   state = {
     currentPage: 1,
     itemsPerPage: 10,
-    disabledNext: false,
-    disabledPrev: false,
   };
   handlePageChange = pageNumber => {
-    this.setState(
-      {
-        currentPage: pageNumber,
-        disabledNext: false,
-      },
-      () =>
-        this.setState({
-          disabledPrev: this.state.currentPage === 1 ? true : false,
-          disabledNext:
-            Math.ceil(Countries.length / this.state.itemsPerPage) ===
-            this.state.currentPage
-              ? true
-              : false,
-        })
-    );
+    this.setState({
+      currentPage: pageNumber,
+      disabledNext: false,
+    });
   };
   handlePagePrev = () => {
     const { currentPage } = this.state;
-    if (currentPage <= 2) {
-      this.setState({
-        disabledPrev: true,
-      });
-    }
     this.setState({
       currentPage: currentPage - 1,
       disabledNext: false,
     });
   };
   handlePageNext = () => {
-    let { itemsPerPage, currentPage } = this.state;
-    if (Math.ceil(Countries.length / itemsPerPage) === currentPage) {
-      this.setState({
-        disabledNext: true,
-      });
-    } else {
-      this.setState({
-        currentPage: currentPage + 1,
-        disabledPrev: false,
-      });
-    }
-  };
-  componentWillMount = () => {
-    const { currentPage, itemsPerPage } = this.state;
-    if (currentPage === 1) {
-      this.setState({
-        disabledPrev: true,
-      });
-    }
-    if (Math.ceil(Countries.length / itemsPerPage) <= 1) {
-      this.setState({
-        disabledNext: true,
-      });
-    }
+    this.setState({
+      currentPage: this.state.currentPage + 1,
+    });
   };
   render() {
-    const {
-      currentPage,
-      itemsPerPage,
-      disabledPrev,
-      disabledNext,
-    } = this.state;
+    const { currentPage, itemsPerPage } = this.state;
     const itemStart = (currentPage - 1) * itemsPerPage;
     const itemEnd = itemStart + itemsPerPage;
 
@@ -89,10 +45,13 @@ export default class App extends Component {
           ))}
         </List>
         <br />
-        <button disabled={disabledPrev} onClick={this.handlePagePrev}>
+        <button disabled={currentPage === 1} onClick={this.handlePagePrev}>
           Prev
         </button>
-        <button disabled={disabledNext} onClick={this.handlePageNext}>
+        <button
+          disabled={currentPage === Math.ceil(Countries.length / itemsPerPage)}
+          onClick={this.handlePageNext}
+        >
           Next
         </button>
         <br />
