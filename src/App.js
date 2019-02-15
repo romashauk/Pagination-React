@@ -18,10 +18,8 @@ export default class App extends Component {
     });
   };
   handlePagePrev = () => {
-    const { currentPage } = this.state;
     this.setState({
-      currentPage: currentPage - 1,
-      disabledNext: false,
+      currentPage: this.state.currentPage - 1,
     });
   };
   handlePageNext = () => {
