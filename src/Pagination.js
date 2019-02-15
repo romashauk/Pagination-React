@@ -26,10 +26,10 @@ export default class Pagination extends Component {
     } = this.props;
     return (
       <div>
-        {this.renderPagination()}
         <button disabled={currentPage === 1} onClick={handlePagePrev}>
           Prev
         </button>
+        {this.renderPagination()}
         <button
           disabled={Math.ceil(total / perPage) === currentPage}
           onClick={handlePageNext}
