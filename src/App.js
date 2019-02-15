@@ -17,14 +17,14 @@ export default class App extends Component {
       disabledNext: false,
     });
   };
-  handlePagePrev = () => {
-    this.setState({
-      currentPage: this.state.currentPage - 1,
-    });
-  };
-  handlePageNext = () => {
+  handleNext = () => {
     this.setState({
       currentPage: this.state.currentPage + 1,
+    });
+  };
+  handlePrev = () => {
+    this.setState({
+      currentPage: this.state.currentPage - 1,
     });
   };
   render() {
@@ -43,21 +43,14 @@ export default class App extends Component {
           ))}
         </List>
         <br />
-        <button disabled={currentPage === 1} onClick={this.handlePagePrev}>
-          Prev
-        </button>
-        <button
-          disabled={currentPage === Math.ceil(Countries.length / itemsPerPage)}
-          onClick={this.handlePageNext}
-        >
-          Next
-        </button>
-        <br />
         <Pagination
           perPage={itemsPerPage}
           total={Countries.length}
           onChange={this.handlePageChange}
           currentPage={currentPage}
+          Countries={Countries}
+          handlePageNext={this.handleNext}
+          handlePagePrev={this.handlePrev}
         />
       </Fragment>
     );

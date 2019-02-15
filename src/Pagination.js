@@ -17,6 +17,26 @@ export default class Pagination extends Component {
     );
   }
   render() {
-    return <div>{this.renderPagination()}</div>;
+    const {
+      currentPage,
+      total,
+      perPage,
+      handlePagePrev,
+      handlePageNext,
+    } = this.props;
+    return (
+      <div>
+        {this.renderPagination()}
+        <button disabled={currentPage === 1} onClick={handlePagePrev}>
+          Prev
+        </button>
+        <button
+          disabled={Math.ceil(total / perPage) === currentPage}
+          onClick={handlePageNext}
+        >
+          Next
+        </button>
+      </div>
+    );
   }
 }
