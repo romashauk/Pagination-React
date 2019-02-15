@@ -14,7 +14,6 @@ export default class App extends Component {
   handlePageChange = pageNumber => {
     this.setState({
       currentPage: pageNumber,
-      disabledNext: false,
     });
   };
   handleNext = () => {
